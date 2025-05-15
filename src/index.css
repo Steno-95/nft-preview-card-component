@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
 :root {
+  /* ### Primary */
+
+  --primary-blue: hsl(215, 51%, 70%);
+  --primary-cyan: hsl(178, 100%, 50%);
+
+  /* ### Neutral */
+
+  --main-bg: hsl(217, 54%, 11%);
+  --card-bg: hsl(216, 50%, 16%);
+  --line-color: hsl(215, 32%, 27%);
+  --white: hsl(0, 0%, 100%);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -9,12 +21,49 @@
 
 @layer base {
   html {
-    font-size: clamp(0.8em, 0.3em + 2vw, 2em);
+    font-size: clamp(0.8em, 0.4em + 0.9vw, 1.2em);
     line-height: 1.5;
     font-weight: 400;
   }
 
   body {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: var(--primary-blue);
+    background-color: var(--main-bg);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--white);
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-(--card-bg) rounded-xl p-5 max-w-[20rem] mx-auto;
+  }
+
+  .card-hover {
+    @apply opacity-0 bg-(--primary-cyan)/50 hover:opacity-100 absolute top-1/2 left-1/2 -translate-1/2 z-2 transition-opacity delay-75 duration-150 ease-in-out size-[18rem];
+  }
+
+  .card-text {
+    @apply border-b-(--line-color) flex flex-col gap-3 pb-3 border-b-1 my-4;
+  }
+
+  .card-footer {
+    @apply flex gap-3 items-center;
+  }
+
+  .item-hover {
+    @apply cursor-pointer hover:text-(--primary-cyan)! transition delay-75 duration-150 ease-in-out;
   }
 }
